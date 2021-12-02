@@ -1,0 +1,43 @@
+<template>
+    <lightning-card title="Payment Manager">
+        <table>
+            <thead>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Total Payment Amount
+                </th>
+                <th>
+                    Earliest Payment Date
+                </th>
+            </thead>
+            <template for:each={contactList} for:item="con">
+                <tr key={con.Id} class="contact-row">
+                    <td>
+                        {con.Name}
+                    </td>
+                    <td>
+                        {con.Total_Payments_Made__c}
+                    </td>
+                    <td>
+                        {con.Earliest_Payment_Date__c}
+                    </td>
+                </tr>
+                <template for:each={con.Payments__r} for:item="pmt">
+                    <tr key={pmt.Id} class="payment-row">
+                        <td>
+                            {pmt.Project__r.Name}
+                        </td>
+                        <td>
+                            {pmt.Amount__c}
+                        </td>
+                        <td>
+                            {pmt.Payment_Date__c}
+                        </td>
+                    </tr>
+                </template>
+            </template>
+        </table>
+    </lightning-card>
+</template>
